@@ -7,7 +7,8 @@ Kaiden Applewhaite
 from requests import get as g
 
 def get_data(pokémon:int|str) -> dict:
-    response = g(f"https://pokeapi.co/api/v2/{pokémon}")
+    url = f"https://pokeapi.co/api/v2/pokemon/{pokémon}"
+    response = g(url)
     data = response.json()
 
     return data
@@ -15,11 +16,11 @@ def get_data(pokémon:int|str) -> dict:
 def get_ability_list(pdict:dict) -> list:
     ability_list = []
 
-    for key in pdict['abilities']:
+    for a_dict in pdict['abilities']:
         ability_str = ""
-        ability_str += pdict[key]['ability']['name']
+        ability_str += a_dict['ability']['name']
 
-        if pdict[key]['ability']['is_hidden']:
+        if a_dict['is_hidden']:
             ability_str += "(Hidden)"
 
         ability_list.append(ability_str)
@@ -42,17 +43,36 @@ def get_type(pdict:dict) -> str:
 def get_moveset_list(pdict:dict) -> list[tuple]:
     moveset_list = []
 
-    for key in pdict['moves']:
-        move_data = pdict['moves'][key]['version_group_details']
+    for m_dict in pdict['moves']:
 
-        for game in move_data:
-            if move_data[game]['version_group']['name'] == 'scarlet-violet':
-                move = pdict['moves'][key]['name']
-                level = move_data['level_learned_at']
+        for vgd_dict in m_dict['version_group_details']:
 
-        moveset_list.append((level, move))
+            if vgd_dict['version_group']['name'] == 'scarlet-violet':
+                move = m_dict['move']['name']
+                level = vgd_dict['level_learned_at']
+
+                moveset_list.append((level, move))
 
     moveset_list.sort()
     return moveset_list
 
+def main():
+    pokémon = input("Enter a Pokémon name or Pokédex #: ")
 
+    if pokémon.isalpha():
+        data = get_data(pokémon.lower())
+        
+    elif pokémon.isdigit():
+        data = get_data(int(pokémon))
+    
+    abilities = get_ability_list(data)
+    types = get_type(data)
+    moves = get_moveset_list(data)
+
+    print(f"\nName: {data['name']}\n")
+    print(f"Dex #: {data['order']}\n")
+    print(f"Abilities: {abilities}\n")
+    print(f"Types: {types}\n")
+    print(f"Moves: {moves}")
+
+main()
