@@ -61,7 +61,7 @@ def main():
 
     if pokémon.isalpha():
         data = get_data(pokémon.lower())
-        
+
     elif pokémon.isdigit():
         data = get_data(int(pokémon))
     
@@ -70,7 +70,7 @@ def main():
     moves = get_moveset_list(data)
 
     print(f"\nName: {data['name']}\n")
-    print(f"Dex #: {data['order']}\n")
+    print(f"Dex #: {data['id']}\n")
     print(f"Abilities: {abilities}\n")
     print(f"Types: {types}\n")
     print(f"Moves: {moves}")
