@@ -3,10 +3,11 @@ CLI Dex
 Kaiden Applewhaite
 12/22/2024
 """
-
+from pokemon import Pokémon
 from requests import get as g
 import os
 
+pokédex = Pokémon()
 # Clear Console command
 def clearConsole():
     command = 'clear'
@@ -71,11 +72,11 @@ def main():
 
         pokémon = input("Enter a Pokémon name or Pokédex #: ")
 
-        if pokémon.isalpha():
-            data = get_data(pokémon.lower())
+        if not pokédex.check_query(pokémon):
+            print("Please try again")
+            continue
 
-        elif pokémon.isdigit():
-            data = get_data(int(pokémon))
+        data = get_data(pokémon)
         
         abilities = get_ability_list(data)
         types = get_type(data)
