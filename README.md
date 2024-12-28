@@ -14,5 +14,27 @@ Abilities: {list_of_abilities} <br>
 Types: {list_of_types} <br>
 Moveset: {list_of_moves}
 
+## Installation
+Create a Python Virtual Environment using:
+```
+python3 -m venv .env
+```
+
+Activate it on Mac using:
+```
+source env/bin/activate 
+```
+
+On Windows:
+```
+env/Scripts/activate.bat //In CMD
+env/Scripts/Activate.ps1 //In Powershell
+```
+
+Install the dependencies using:
+```
+pip install -r requirements.txt
+```
+
 ## Notices
 PokéAPI was created by Paul Hallett (https://github.com/phalt) and others. Pokémon and Pokémon character names are trademarks of Nintendo.
