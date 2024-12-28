@@ -5,6 +5,14 @@ Kaiden Applewhaite
 """
 
 from requests import get as g
+import os
+
+# Clear Console command
+def clearConsole():
+    command = 'clear'
+    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
+        command = 'cls'
+    os.system(command)
 
 def get_data(pokémon:int|str) -> dict:
     url = f"https://pokeapi.co/api/v2/pokemon/{pokémon}"
@@ -57,22 +65,33 @@ def get_moveset_list(pdict:dict) -> list[tuple]:
     return moveset_list
 
 def main():
-    pokémon = input("Enter a Pokémon name or Pokédex #: ")
+    while True:
 
-    if pokémon.isalpha():
-        data = get_data(pokémon.lower())
+        clearConsole()
 
-    elif pokémon.isdigit():
-        data = get_data(int(pokémon))
-    
-    abilities = get_ability_list(data)
-    types = get_type(data)
-    moves = get_moveset_list(data)
+        pokémon = input("Enter a Pokémon name or Pokédex #: ")
 
-    print(f"\nName: {data['name']}\n")
-    print(f"Dex #: {data['id']}\n")
-    print(f"Abilities: {abilities}\n")
-    print(f"Types: {types}\n")
-    print(f"Moves: {moves}")
+        if pokémon.isalpha():
+            data = get_data(pokémon.lower())
+
+        elif pokémon.isdigit():
+            data = get_data(int(pokémon))
+        
+        abilities = get_ability_list(data)
+        types = get_type(data)
+        moves = get_moveset_list(data)
+
+        clearConsole()
+
+        print(f"Name: {data['name']}\n")
+        print(f"Dex #: {data['id']}\n")
+        print(f"Abilities: {abilities}\n")
+        print(f"Types: {types}\n")
+        print(f"Moves: {moves}")
+
+        run_again = input("Search again? (Y/n) ")
+        
+        if run_again.lower() == "n":
+            break
 
 main()
