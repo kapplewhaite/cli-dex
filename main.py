@@ -68,8 +68,6 @@ def get_moveset_list(pdict:dict) -> list[tuple]:
 def main():
     while True:
 
-        clearConsole()
-
         pokémon = input("Enter a Pokémon name or Pokédex #: ")
 
         if not pokédex.check_query(pokémon):
