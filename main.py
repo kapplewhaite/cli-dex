@@ -16,7 +16,7 @@ def clearConsole():
     os.system(command)
 
 def get_data(pokémon:int|str) -> dict:
-    url = f"https://pokeapi.co/api/v2/pokemon/{pokémon}"
+    url = f"https://pokeapi.co/api/v2/pokemon/{pokémon.lower()}"
     response = g(url)
     data = response.json()
 
