@@ -47,7 +47,7 @@ def get_moveset_list(pdict:dict) -> list[tuple]:
 
         for vgd_dict in m_dict['version_group_details']:
 
-            if vgd_dict['version_group']['name'] == 'scarlet-violet':
+            if vgd_dict['version_group']['name'] == 'lets-go-pikachu-lets-go-eevee':
                 move = m_dict['move']['name']
                 level = vgd_dict['level_learned_at']
 
