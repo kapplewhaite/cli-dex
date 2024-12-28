@@ -5,7 +5,7 @@ A CLI program that pulls information from Pokémon in the Kanto Region (1-151)
 This program allows a user to search for a Pokémon (by either name or number) and pull information such as Evolution Information, Height, Weight, etc. All data is retrieved from PokéAPI (https://pokeapi.co/) (https://github.com/PokeAPI).
 
 ### Available Pokémon
-Pokémon 1-151 (Bulbasaur - Mew) will have data available to be retrieved. Data will be up-to-date as of Generation 9 (Scarlet and Violet).
+Pokémon 1-151 (Bulbasaur - Mew) will have data available to be retrieved. Data will be pulled from the "Let's Go" games as they are the latest Kanto games. Functionality to choose which game to pull data from will come later, and more Pokémon will be able to searched for.
 
 ### Format
 Name: {name} <br>
